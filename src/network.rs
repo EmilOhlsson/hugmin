@@ -1,4 +1,4 @@
-use nix::net::if_::InterfaceFlags;
+use nix::{net::if_::InterfaceFlags, sys::socket::SockAddr};
 use std::collections::HashMap;
 
 pub fn description() -> String {
@@ -29,7 +29,9 @@ pub fn description() -> String {
     for (iface, addrs) in interfaces_sorted {
         net_string += &format!("{}:", iface);
         for (addr, _) in addrs {
-            net_string += &format!(" {}", addr);
+            if let SockAddr::Inet(inet_addr) = addr {
+                net_string += &format!(" {}", inet_addr.ip());
+            }
         }
     }
 
