@@ -7,7 +7,7 @@ mod network;
 const BATTERY: char = '\u{01F50B}';
 const NETWORK: char = '\u{01F5A7}';
 const CLOCK: char = '\u{01F551}';
-const LOAD: &str = "loadavg";
+const LOAD: char = '\u{01F3C7}';
 
 fn main() {
     // Time and date
